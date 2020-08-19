@@ -1,0 +1,50 @@
+---
+swagger: "2.0"
+info:
+  description: "First API with Swagger"
+  version: "1.0.0"
+  title: "Swagger First API"
+host: "localhost:8090"
+basePath: "/"
+schemes:
+- "http"
+paths:
+  /users:
+    get:
+      operationId: "usersGet"
+      parameters: []
+      responses:
+        "200":
+          description: "Return all users"
+      x-swagger-router-controller: "Default"
+  /users/add:
+    post:
+      operationId: "userAdd"
+      consumes:
+      - "multipart/form-data"
+      parameters:
+      - name: "name"
+        in: "formData"
+        required: true
+        type: "string"
+      - name: "surname"
+        in: "formData"
+        required: false
+        type: "string"
+      responses:
+        "200":
+          description: "Return created user"
+      x-swagger-router-controller: "Default"
+  /users/remove/{id}:
+    delete:
+      operationId: "userRemove"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "Remove a user"
+      x-swagger-router-controller: "Default"
+definitions: {}
